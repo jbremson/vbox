@@ -10,6 +10,11 @@ ingress:
       paths:
         - path: /netbox
           pathType: Prefix
+          backend:
+            service:
+              name: netbox
+              port:
+                number: 8080
 persistence:
   enabled: true
   storageClass: "local-path"  # Replace with your k3s storage class if different
