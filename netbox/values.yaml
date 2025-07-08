@@ -1,0 +1,36 @@
+# values.yaml
+image:
+  repository: netboxcommunity/netbox
+  tag: "v4.1.1"  # Use the latest stable version; check for updates
+ingress:
+  enabled: true
+  className: "traefik"  # k3s default ingress controller
+  hosts:
+    - host: ec2-44-218-53-120.compute-1.amazonaws.com# Replace with your domain or IP-based hostname
+      paths:
+        - path: /netbox
+          pathType: Prefix
+persistence:
+  enabled: true
+  storageClass: "local-path"  # Replace with your k3s storage class if different
+  accessMode: ReadWriteOnce
+  size: 1Gi
+postgresql:
+  enabled: true
+  primary:
+    persistence:
+      enabled: true
+      storageClass: "local-path"  # Replace with your storage class
+      size: 8Gi
+redis:
+  enabled: true
+  master:
+    persistence:
+      enabled: true
+      storageClass: "local-path"  # Replace with your storage class
+      size: 8Gi
+  replica:
+    persistence:
+      enabled: true
+      storageClass: "local-path"  # Replace with your storage class
+      size: 8Gi
