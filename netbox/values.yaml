@@ -6,7 +6,7 @@ ingress:
   enabled: true
   className: "traefik"  # k3s default ingress controller
   hosts:
-    - host: ec2-44-218-53-120.compute-1.amazonaws.com# Replace with your domain or IP-based hostname
+    - host: netbox.44.218.53.120.nip.io # Replace with your domain or IP-based hostname
       paths:
         - path: /netbox
           pathType: Prefix
