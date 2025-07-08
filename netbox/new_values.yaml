@@ -1,0 +1,45 @@
+image:
+  repository: netboxcommunity/netbox
+  tag: "v4.1.1"
+ingress:
+  enabled: true
+  className: "traefik"
+  hosts:
+    - host: netbox.44.218.53.120.nip.io
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: netbox
+              port:
+                number: 8080
+persistence:
+  enabled: true
+  storageClass: "local-path"
+  accessMode: ReadWriteOnce
+  size: 1Gi
+postgresql:
+  enabled: true
+  image:
+    repository: postgres
+    tag: "17"
+  primary:
+    persistence:
+      enabled: true
+      storageClass: "local-path"
+      size: 8Gi
+    service:
+      port: 5432
+redis:
+  enabled: true
+  master:
+    persistence:
+      enabled: true
+      storageClass: "local-path"
+      size: 8Gi
+  replica:
+    persistence:
+      enabled: true
+      storageClass: "local-path"
+      size: 8Gi
